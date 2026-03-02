@@ -8,16 +8,18 @@ namespace Antoine
         [Header("Setup")]
         [SerializeField] private LineRenderer m_lineRenderer;
         [SerializeField] private ParticleSystem m_laserParticles;
+        [SerializeField] private GameObject m_centerSphere;
         [SerializeField] private Transform m_firePoint;
 
         [Header("Settings")]
-        [SerializeField] private float m_growthDuration = 0.1f;
-        [SerializeField] private float m_lifeDuration = 0.5f;
+        [Range(0.01f, 1f)][SerializeField] private float m_growthDuration = 0.1f;
+        [Range(0.01f, 10f)][SerializeField] private float m_lifeDuration = 0.5f;
         [SerializeField] private float m_maxLineWidth = 0.2f;
         [SerializeField] private float m_laserDistance = 50f;
 
         private Coroutine m_laserRoutine;
         private WaitForSeconds m_lifeWait;
+        private float m_currentLifeDuration;
 
         private void Awake()
         {
@@ -29,10 +31,15 @@ namespace Antoine
 
             if (m_laserParticles != null)
             {
-                m_laserParticles.Stop();
+                m_laserParticles.gameObject.SetActive(false);
             }
 
-            m_lifeWait = new WaitForSeconds(m_lifeDuration);
+            if (m_centerSphere != null)
+            {
+                m_centerSphere.SetActive(false);
+            }
+
+            UpdateLifeWait();
         }
 
         private void Update()
@@ -51,14 +58,12 @@ namespace Antoine
 
         private System.Collections.IEnumerator HandleLaserSequence()
         {
+            UpdateLifeWait();
+
             m_lineRenderer.enabled = true;
 
-            if (m_laserParticles != null)
-            {
-                m_laserParticles.transform.position = m_firePoint.position;
-                m_laserParticles.transform.rotation = m_firePoint.rotation;
-                m_laserParticles.Play();
-            }
+            if (m_laserParticles != null) m_laserParticles.gameObject.SetActive(true);
+            if (m_centerSphere != null) m_centerSphere.SetActive(true);
 
             float elapsedTime = 0f;
             while (elapsedTime < m_growthDuration)
@@ -70,11 +75,7 @@ namespace Antoine
                 m_lineRenderer.SetPosition(0, m_firePoint.position);
                 m_lineRenderer.SetPosition(1, targetPosition);
 
-                if (m_laserParticles != null)
-                {
-                    m_laserParticles.transform.position = m_firePoint.position;
-                    m_laserParticles.transform.rotation = m_firePoint.rotation;
-                }
+                UpdateModulesPosition();
 
                 m_lineRenderer.startWidth = currentWidth;
                 m_lineRenderer.endWidth = currentWidth;
@@ -86,14 +87,44 @@ namespace Antoine
 
             yield return m_lifeWait;
 
+            // Despawn global
             m_lineRenderer.enabled = false;
 
             if (m_laserParticles != null)
             {
-                m_laserParticles.Stop();
+                m_laserParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                m_laserParticles.gameObject.SetActive(false);
+            }
+
+            if (m_centerSphere != null)
+            {
+                m_centerSphere.SetActive(false);
             }
 
             m_laserRoutine = null;
+        }
+
+        private void UpdateModulesPosition()
+        {
+            if (m_laserParticles != null)
+            {
+                m_laserParticles.transform.position = m_firePoint.position;
+                m_laserParticles.transform.rotation = m_firePoint.rotation;
+            }
+
+            if (m_centerSphere != null)
+            {
+                m_centerSphere.transform.position = m_firePoint.position;
+            }
+        }
+
+        private void UpdateLifeWait()
+        {
+            if (m_lifeWait == null || !Mathf.Approximately(m_currentLifeDuration, m_lifeDuration))
+            {
+                m_currentLifeDuration = m_lifeDuration;
+                m_lifeWait = new WaitForSeconds(m_currentLifeDuration);
+            }
         }
     }
 }

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Source_Test_Beam 1
-  m_Shader: {fileID: -6465566751694194690, guid: 15c3aeecacc392943ae0d1ada18b4afc, type: 3}
+  m_Name: Shader Graphs_InnerSource
+  m_Shader: {fileID: -6465566751694194690, guid: 1b1846c95bc635040af0eaa71757e0e5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,14 +24,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Beam:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MAsk:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -46,20 +38,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BaseRoation: 0
-    - _DisolveTest: 0.2
-    - _NoieAmout: 0.75
-    - _NoisePow: 1
-    - _NoiseScale: 7
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 135.587, g: 135.587, b: 135.587, a: 1}
-    - _NoiseSpeed: {r: 1, g: 0, b: 0, a: 0}
-    - _Speed: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 2.095281, g: 0, b: 23.968637, a: 1}
+    - _Color_Int: {r: 23.968632, g: 23.968632, b: 23.968632, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4723549818621912805
+--- !u!114 &4632822777176810877
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -54,8 +54,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 2.0000002, g: 2.0000002, b: 2.0000002, a: 1}
-    - _NoiseSpeed: {r: -1, g: 0, b: 0, a: 0}
+    - _Color: {r: 23.968632, g: 23.968632, b: 23.968632, a: 1}
+    - _NoiseSpeed: {r: -5, g: 0, b: 0, a: 0}
     - _Speed: {r: -0.7, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
