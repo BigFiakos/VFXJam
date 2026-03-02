@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Balloon
-  m_Shader: {fileID: -6465566751694194690, guid: e845982973d94e84cb41a192cec09dcc, type: 3}
+  m_Name: Shader Graphs_Test_Beam
+  m_Shader: {fileID: -6465566751694194690, guid: 15c3aeecacc392943ae0d1ada18b4afc, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -24,15 +24,11 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _DeflatedMap:
-        m_Texture: {fileID: 2800000, guid: d043d3441369d3f40bfe1f60ae4b96a4, type: 3}
+    - _Beam:
+        m_Texture: {fileID: 2800000, guid: 2d3aabb46c77ba542ba880c34cd924ca, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _PositionMap:
+    - _MAsk:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -50,26 +46,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Base_First_Amplitude: 0.25
-    - _Base_First_Offset: 0.25
-    - _Deflated: 0
-    - _Deflated_Noise_Amplitude: 0.91
-    - _Deflated_Noise_Frequency: 0.05
-    - _Deflated_Noise_Speed: 0.3
-    - _Float: 2.83
-    - _Inflated: 1
+    - _BaseRoation: 0
+    - _DisolveTest: 0.2
+    - _NoieAmout: 0.75
+    - _NoisePow: 1.5
+    - _NoiseScale: 25
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0
     m_Colors:
-    - _BoundsMax: {r: 0, g: 0, b: 0, a: 0}
-    - _BoundsMin: {r: -0.9, g: -0.7890538, b: -1.6881328, a: 0}
-    - _Color: {r: 0.4643453, g: 0, b: 0.7490197, a: 0}
-    - _Max: {r: 0.9356378, g: 1.712519, b: 1.331325, a: 0}
-    - _Min: {r: -0.8178612, g: -0.1503789, b: -0.7924015, a: 0}
+    - _Color: {r: 2.0000002, g: 2.0000002, b: 2.0000002, a: 1}
+    - _NoiseSpeed: {r: -1, g: 0, b: 0, a: 0}
+    - _Speed: {r: -0.7, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &934638449157654401
+--- !u!114 &4723549818621912805
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
