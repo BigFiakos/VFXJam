@@ -8,6 +8,7 @@ namespace Antoine
         [Header("Setup")]
         [SerializeField] private LineRenderer m_lineRenderer;
         [SerializeField] private ParticleSystem m_laserParticles;
+        [SerializeField] private ParticleSystem m_drippingParticles;
         [SerializeField] private GameObject m_centerSphere;
         [SerializeField] private Transform m_firePoint;
 
@@ -32,6 +33,11 @@ namespace Antoine
             if (m_laserParticles != null)
             {
                 m_laserParticles.gameObject.SetActive(false);
+            }
+
+            if (m_drippingParticles != null)
+            {
+                m_drippingParticles.gameObject.SetActive(false);
             }
 
             if (m_centerSphere != null)
@@ -63,6 +69,7 @@ namespace Antoine
             m_lineRenderer.enabled = true;
 
             if (m_laserParticles != null) m_laserParticles.gameObject.SetActive(true);
+            if (m_drippingParticles != null) m_drippingParticles.gameObject.SetActive(true);
             if (m_centerSphere != null) m_centerSphere.SetActive(true);
 
             float elapsedTime = 0f;
@@ -87,13 +94,18 @@ namespace Antoine
 
             yield return m_lifeWait;
 
-            // Despawn global
             m_lineRenderer.enabled = false;
 
             if (m_laserParticles != null)
             {
                 m_laserParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 m_laserParticles.gameObject.SetActive(false);
+            }
+
+            if (m_drippingParticles != null)
+            {
+                m_drippingParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                m_drippingParticles.gameObject.SetActive(false);
             }
 
             if (m_centerSphere != null)
@@ -110,6 +122,12 @@ namespace Antoine
             {
                 m_laserParticles.transform.position = m_firePoint.position;
                 m_laserParticles.transform.rotation = m_firePoint.rotation;
+            }
+
+            if (m_drippingParticles != null)
+            {
+                m_drippingParticles.transform.position = m_firePoint.position;
+                m_drippingParticles.transform.rotation = m_firePoint.rotation;
             }
 
             if (m_centerSphere != null)
